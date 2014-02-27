@@ -1823,7 +1823,7 @@ GtkColorButton.button {
     padding: 4px;
     border-width: 0 0 1px;
     border-style: solid;
-    border-color: shade(@menu_bg_color, 0.8);
+    border-color: @menu_bg_color;
     background-color: @menu_bg_color;
 }
 
@@ -3039,9 +3039,10 @@ GtkBubbleWindow .toolbar {
  * CSD *
  *******/
 .titlebar {
-    border-radius: 2px 2px 0 0;
+    border-color: @menu_bg_color #dedede;
+    border-radius:  0;
     background-image: none;
-    background-color: @toolbar_bg_color;
+    background-color: @m_bg_color;
     color: mix(@toolbar_fg_color, @toolbar_bg_color, 0.1);
     text-shadow: none;
 }
@@ -3111,31 +3112,44 @@ GtkBubbleWindow .toolbar {
 
 .window-frame {
     border-style: none;
-    border-radius: 2px 2px 0 0;
+    border-radius: 10px 1px 0 0;
+    border-color: red;
     box-shadow: 0 3px 7px 1px alpha(black, 0.7),
-                0 0 0 1px mix(shade(@toolbar_bg_color, 0.7), @toolbar_fg_color, 0.21);
+                0 0 0 1px mix(shade(@menu_bg_color, 0.85), @toolbar_bg_color, 0.15);
 
     /* this is used for the resize cursor area */
     margin: 10px;
 }
 
 .window-frame:backdrop {
-    box-shadow: 0 3px 5px 1px alpha(black, 0.5),
-                0 0 0 1px mix(shade(@toolbar_bg_color, 0.7), @toolbar_fg_color, 0.12);
+    box-shadow: 0 3px 7px 1px alpha(black, 0.7),
+                0 0 0 1px @menu_bg_color;
 }
 
 .header-bar,
-.header-bar:backdrop,
 .header-bar .primary-toolbar,
-.header-bar .toolbar,
-.header-bar .primary-toolbar:backdrop,
-.header-bar .toolbar:backdrop,
-.header-bar .separator,
-.header-bar .separator:backdrop,
+.header-bar .toolbar {
+    color: @wm_title_focused;
+    border-color: @menu_bg_color;
+    background-color: @menu_bg_color;
+}
+
+.header-bar .separator, 
 .header-bar .separator:insensitive,
-.header-bar GtkSeparatorToolItem:backdrop,
 .header-bar GtkSeparatorToolItem {
-    color: @menu_fg_color;
-    border-color: @menu_fg_color;
+    color: mix(shade(@menu_bg_color, 0.8), @toolbar_bg_color, 0.6);
+}
+
+.header-bar GtkSeparatorToolItem:backdrop,
+.header-bar .separator:backdrop {
+    color: mix(shade(@menu_bg_color, 0.8), @toolbar_bg_color, 0.4);
+}
+
+
+.header-bar:backdrop,
+.header-bar .primary-toolbar:backdrop,
+.header-bar .toolbar:backdrop {
+    color: @wm_title_unfocused;
+    border-color: @menu_bg_color;
     background-color: @menu_bg_color;
 }
